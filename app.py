@@ -107,45 +107,7 @@ elif page == "📂 Dataset":
     with st.expander("Show Complete Dataset"):
         st.dataframe(df, use_container_width=True)
 
-        # ---------------- Clustering ----------------
-if page == "🧩 Clustering":
-
-    st.title("🧩 Customer Clustering")
-
-    st.markdown("### Customer Segments")
-
-    fig = px.scatter(
-        df,
-        x="Income",
-        y="MntWines",
-        color=df["Cluster"].astype(str),
-        title="Customer Segments"
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
-
-    st.markdown("### Customers in Each Cluster")
-
-    cluster_counts = df["Cluster"].value_counts().reset_index()
-    cluster_counts.columns = ["Cluster", "Customers"]
-
-    fig2 = px.bar(
-        cluster_counts,
-        x="Cluster",
-        y="Customers",
-        color="Cluster",
-        title="Customers per Cluster"
-    )
-
-    st.plotly_chart(fig2, use_container_width=True)
-
-    st.markdown("### Cluster Statistics")
-
-    st.dataframe(
-        df.groupby("Cluster")[["Income", "MntWines"]].mean().round(2),
-        use_container_width=True
-    )
-
+        
 
         # ---------------- EDA ----------------
 if page == "📈 EDA":
