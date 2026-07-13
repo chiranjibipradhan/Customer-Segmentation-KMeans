@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+import pandas as pd
 
 from src.data_loader import load_data
 from src.preprocessing import clean_data
@@ -100,7 +101,10 @@ elif page == "📂 Dataset":
 
     st.write("### Column Names")
 
-    st.write(list(df.columns))
+    st.dataframe(
+    pd.DataFrame({"Column Names": df.columns}),
+    use_container_width=True
+)
 
     st.markdown("---")
 
